@@ -1,0 +1,20 @@
+.list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+  padding: 16px max(16px, calc((100% - 860px) / 2));
+  overflow-y: auto;
+}
+
+.badge {
+  align-self: center;
+  margin: 8px 0;
+  padding: 4px 12px;
+  border-radius: var(--radius-round);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  background: rgb(255 255 255 / 75%);
+  backdrop-filter: blur(6px);
+}

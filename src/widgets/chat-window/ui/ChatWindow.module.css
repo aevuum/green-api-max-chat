@@ -8,11 +8,6 @@
   background-size: 18px 18px;
 }
 
-.messages {
-  flex: 1;
-  min-height: 0;
-}
-
 .placeholder {
   display: flex;
   flex-direction: column;
