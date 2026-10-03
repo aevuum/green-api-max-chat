@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { useMemo } from 'react'
 import { ChatListItem, sortChatsByActivity, useChatStore } from '@/entities/chat'
 import { selectIdInstance, useSessionStore } from '@/entities/session'
@@ -6,7 +7,11 @@ import { LogoutButton } from '@/features/logout'
 import { Logo } from '@/shared/ui'
 import styles from './Sidebar.module.css'
 
-export const Sidebar = () => {
+interface SidebarProps {
+  isOnline: boolean
+}
+
+export const Sidebar = ({ isOnline }: SidebarProps) => {
   const idInstance = useSessionStore(selectIdInstance)
   const chats = useChatStore((state) => state.chats)
   const activeChatId = useChatStore((state) => state.activeChatId)
@@ -20,7 +25,10 @@ export const Sidebar = () => {
         <Logo size={36} />
         <div className={styles.heading}>
           <h1 className={styles.title}>Чаты</h1>
-          <span className={styles.instance}>Инстанс {idInstance}</span>
+          <span className={styles.status}>
+            <span className={clsx(styles.indicator, !isOnline && styles.offline)} />
+            {isOnline ? `Инстанс ${idInstance}` : 'Нет связи с GREEN-API…'}
+          </span>
         </div>
         <LogoutButton />
       </header>
