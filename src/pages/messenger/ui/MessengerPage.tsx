@@ -1,14 +1,16 @@
-import { selectIdInstance, useSessionStore } from '@/entities/session'
-import { LogoutButton } from '@/features/logout'
+import clsx from 'clsx'
+import { useChatStore } from '@/entities/chat'
+import { ChatWindow } from '@/widgets/chat-window'
+import { Sidebar } from '@/widgets/sidebar'
 import styles from './MessengerPage.module.css'
 
 export const MessengerPage = () => {
-  const idInstance = useSessionStore(selectIdInstance)
+  const hasActiveChat = useChatStore((state) => state.activeChatId !== null)
 
   return (
-    <main className={styles.page}>
-      <span>Инстанс {idInstance}</span>
-      <LogoutButton />
+    <main className={clsx(styles.layout, hasActiveChat && styles.chatOpened)}>
+      <Sidebar />
+      <ChatWindow />
     </main>
   )
 }
