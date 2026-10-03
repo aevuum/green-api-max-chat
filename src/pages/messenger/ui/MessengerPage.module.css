@@ -1,7 +1,25 @@
-.page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) 1fr;
   height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+@media (width <= 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .layout > :last-child {
+    display: none;
+  }
+
+  .chatOpened > :first-child {
+    display: none;
+  }
+
+  .chatOpened > :last-child {
+    display: flex;
+  }
 }
