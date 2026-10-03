@@ -1,4 +1,5 @@
-import { selectActiveChat, useChatStore } from '@/entities/chat'
+import { MessageList, selectActiveChat, useChatStore } from '@/entities/chat'
+import { MessageComposer } from '@/features/send-message'
 import { ChatBubbleIcon } from '@/shared/ui/icons'
 import { ChatHeader } from './ChatHeader'
 import styles from './ChatWindow.module.css'
@@ -21,7 +22,8 @@ export const ChatWindow = () => {
   return (
     <section className={styles.window} aria-label={`Чат с ${chat.title}`}>
       <ChatHeader chat={chat} onBack={() => selectChat(null)} />
-      <div className={styles.messages} />
+      <MessageList messages={chat.messages} emptyText="Напишите первое сообщение" />
+      <MessageComposer key={chat.id} chatId={chat.id} />
     </section>
   )
 }

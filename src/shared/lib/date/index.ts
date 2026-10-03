@@ -1,1 +1,1 @@
-export { formatShortDate, formatTime } from './formatDate'
+export { formatDayLabel, formatShortDate, formatTime, isSameDay } from './formatDate'
